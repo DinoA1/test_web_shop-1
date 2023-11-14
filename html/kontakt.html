@@ -17,6 +17,15 @@
             alert(email);
             let poruka = document.getElementById("poruka").value;
             document.getElementById("korisnik_unos").innerHTML="Korisnik "+email+" je rekao: "+poruka; 
+            const httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = function(){
+                if (httpRequest.readyState==4){
+                    document.getElementById("korisnik_unos").innerHTML=httpRequest.responseText; 
+                }
+            }
+            httpRequest.open("GET","../php/obrada.php?email="+email+"&poruka="+poruka);
+            httpRequest.send();
+            
         }
     </script>
 </head>
@@ -28,6 +37,7 @@
                 <a href="index.html" class="w3-bar-item w3-button">Početna stranica</a>
                 <a href="sve_ponude.html" class="w3-bar-item w3-button">Sve ponude</a>
                 <a href="" class="w3-bar-item w3-button">Kontakt</a>
+                <a href="registracija.html" class="w3-bar-item w3-button">Registracija</a>
             </div>               
         </nav>
     </div>
